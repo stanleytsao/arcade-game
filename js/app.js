@@ -46,7 +46,7 @@ Enemy.prototype.render = function() {
 };
 
 
-// ----- New Bugs ----- start
+// ----- New Bugs -----
 var Newbug = function(x, y, speed) {
     this.x = x;
     this.y = y;
@@ -80,7 +80,7 @@ Newbug.prototype.update = function(dt, speed) {
 Newbug.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-// ----- New Bugs ----- end
+
 
 // Now write your own player class
 // This class requires an update(), render() and
