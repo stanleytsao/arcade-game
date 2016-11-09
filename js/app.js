@@ -45,6 +45,43 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+
+// ----- New Bugs ----- start
+var Newbug = function(x, y, speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.speed = Math.random() * 100 - 300;
+    this.sprite = 'images/newBug.png';
+};
+
+Newbug.prototype.update = function(dt, speed) {
+    if (this.x < -80) {
+        this.x = 500;
+        this.speed = Math.random() * 100 - 300;
+    } else {
+        this.x += (this.speed * dt);
+    }
+
+    // Defining enemy locations
+    bugLoc = {
+        x: this.x,
+        y: this.y
+    };
+    // Collision resets player & gives losing message
+    if ((player.y > (bugLoc.y - 40)) && (player.y < (bugLoc.y + 40)) &&
+        (player.x < (bugLoc.x + 40)) && (player.x > bugLoc.x - 40)) {
+        setTimeout(function() {
+            alert("You Lose! Try again!");
+            player.reset();
+        }, dt);
+    }
+};
+Newbug.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+// ----- New Bugs ----- end
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -103,9 +140,9 @@ Player.prototype.handleInput = function(key) {
 var bug1 = new Enemy(-80, 146);
 var bug2 = new Enemy(-90, 230);
 var bug3 = new Enemy(-100, 313);
-var bug4 = new Enemy(-110, 146);
-var bug5 = new Enemy(-120, 230);
-var bug6 = new Enemy(-130, 313);
+var bug4 = new Newbug(-110, 146);
+var bug5 = new Newbug(-120, 230);
+var bug6 = new Newbug(-130, 313);
 var allEnemies = [bug1, bug2, bug3, bug4, bug5, bug6];
 
 // Set player starting location
