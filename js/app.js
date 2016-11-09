@@ -46,8 +46,30 @@ Player.prototype.update = function(dt) {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-Player.prototype.handleInput = function() {
+Player.prototype.handleInput = function(key) {
+    switch(key){
+        case 'left' :
+          if (this.x >= 100) {
+            this.x = this.x - 100;
+        };
+          break;
+        case 'right' :
+          if (this.x <= 375) {
+            this.x = this.x + 100;
+          };
+          break;
+        case 'up' :
+            if (this.y >= 20){
+              this.y = this.y - 83;
+            };
 
+          break;
+        case 'down' :
+            if (this.y <= 350){
+              this.y = this.y + 83;
+            };
+          break;
+    };
 };
 
 // Now instantiate your objects.
@@ -57,7 +79,8 @@ var bug1 = new Enemy(-80, 62);
 var bug2 = new Enemy(-80, 146);
 var bug3 = new Enemy(-80, 230);
 var allEnemies = [bug1, bug2, bug3];
-var player = new Player(200, 375);
+
+var player = new Player(202, 375);
 
 
 // This listens for key presses and sends the keys to your
