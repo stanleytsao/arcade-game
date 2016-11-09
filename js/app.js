@@ -3,7 +3,7 @@ var Enemy = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.speed = Math.random() * 100 + 200;
+    this.speed = Math.random() * 200 + 100;
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -15,15 +15,26 @@ var Enemy = function(x, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt, speed) {
-    if (this.x > 500){
+    if (this.x > 500) {
         this.x = -80;
-        this.speed = Math.random() * 100 + 200;
+        this.speed = Math.random() * 200 + 100;
     } else {
-       this.x += (this.speed * dt);
+        // You should multiply any movement by the dt parameter
+        // which will ensure the game runs at the same speed for
+        // all computers.
+        this.x += (this.speed * dt);
     }
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+
+    // Defining enemy locations
+    enemyLoc = {
+        x: this.x,
+        y: this.y
+    };
+    // Collision resets player & gives losing message
+    if ((player.y > (enemyLoc.y - 50)) && (player.y < (enemyLoc.y + 50)) && (player.x > (enemyLoc.x - 50)) && (player.x < (enemyLoc.x + 50))) {
+        alert("You Lose! Try again!");;
+        player.reset();
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -40,48 +51,61 @@ var Player = function(x, y) {
     this.speed = 100;
     this.sprite = 'images/char-boy.png';
 };
-Player.prototype.update = function(dt) {
+Player.prototype.update = function() {
 
 };
+
+// Draw the player on the screen
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-Player.prototype.handleInput = function(key) {
-    switch(key){
-        case 'left' :
-          if (this.x >= 100) {
-            this.x = this.x - 100;
-        };
-          break;
-        case 'right' :
-          if (this.x <= 375) {
-            this.x = this.x + 100;
-          };
-          break;
-        case 'up' :
-            if (this.y >= 20){
-              this.y = this.y - 83;
-            };
 
-          break;
-        case 'down' :
-            if (this.y <= 350){
-              this.y = this.y + 83;
+// Control movement and boundaries
+Player.prototype.handleInput = function(key) {
+
+    switch (key) {
+        case 'left':
+            if (this.x >= 100) {
+                this.x = this.x - 101;
             };
-          break;
+            break;
+        case 'right':
+            if (this.x <= 375) {
+                this.x = this.x + 101;
+            };
+            break;
+        case 'up':
+            if (this.y >= 80) {
+                this.y = this.y - 83;
+            };
+            break;
+        case 'down':
+            if (this.y <= 400) {
+                this.y = this.y + 83;
+            };
+            break;
     };
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var bug1 = new Enemy(-80, 62);
-var bug2 = new Enemy(-80, 146);
-var bug3 = new Enemy(-80, 230);
-var allEnemies = [bug1, bug2, bug3];
+var bug1 = new Enemy(-80, 146);
+var bug2 = new Enemy(-90, 230);
+var bug3 = new Enemy(-100, 313);
+var bug4 = new Enemy(-110, 146);
+var bug5 = new Enemy(-120, 230);
+var bug6 = new Enemy(-130, 313);
+var allEnemies = [bug1, bug2, bug3, bug4, bug5, bug6];
 
-var player = new Player(202, 375);
+// Set player starting location
+var player = new Player(202, 458);
 
+// Set player location after reset
+Player.prototype.reset = function() {
+    this.x = 202;
+    this.y = 458;
+};
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
