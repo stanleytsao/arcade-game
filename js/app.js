@@ -31,9 +31,12 @@ Enemy.prototype.update = function(dt, speed) {
         y: this.y
     };
     // Collision resets player & gives losing message
-    if ((player.y > (enemyLoc.y - 50)) && (player.y < (enemyLoc.y + 50)) && (player.x > (enemyLoc.x - 50)) && (player.x < (enemyLoc.x + 50))) {
-        alert("You Lose! Try again!");;
-        player.reset();
+    if ((player.y > (enemyLoc.y - 40)) && (player.y < (enemyLoc.y + 40)) &&
+        (player.x < (enemyLoc.x + 40)) && (player.x > enemyLoc.x - 40)) {
+        setTimeout(function() {
+            alert("You Lose! Try again!");
+            player.reset();
+        }, dt);
     }
 };
 
@@ -52,7 +55,14 @@ var Player = function(x, y) {
     this.sprite = 'images/char-boy.png';
 };
 Player.prototype.update = function() {
+    if (player.y < 100) {
+        setTimeout(function() {
+            player.reset();
+            alert("You Win!");
+        }, 10);
 
+
+    }
 };
 
 // Draw the player on the screen
