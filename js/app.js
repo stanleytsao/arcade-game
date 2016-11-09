@@ -3,7 +3,7 @@ var Enemy = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.speed = Math.random() * 200 + 100;
+    this.speed = Math.random() * 200 + 150;
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -17,7 +17,7 @@ var Enemy = function(x, y, speed) {
 Enemy.prototype.update = function(dt, speed) {
     if (this.x > 500) {
         this.x = -80;
-        this.speed = Math.random() * 200 + 100;
+        this.speed = Math.random() * 200 + 150;
     } else {
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
@@ -51,14 +51,14 @@ var Newbug = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.speed = Math.random() * 100 - 300;
+    this.speed = Math.random() * 100 - 350;
     this.sprite = 'images/newBug.png';
 };
 
 Newbug.prototype.update = function(dt, speed) {
     if (this.x < -80) {
         this.x = 500;
-        this.speed = Math.random() * 100 - 300;
+        this.speed = Math.random() * 100 - 350;
     } else {
         this.x += (this.speed * dt);
     }

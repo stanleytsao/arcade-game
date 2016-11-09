@@ -5,6 +5,9 @@ frontend-nanodegree-arcade-game
 
 **How to play:** Use the arrow keys to move up, down, left, and right.
 
-**Start game:** To begin the game, open the _index.html_ file.
+**Start game:** To begin the game, download all files to a local directory and open the _index.html_ file.
 
-Have fun!
+**Note:** Be careful of blue bugs that move from right to left!
+
+
+**Have fun!**
