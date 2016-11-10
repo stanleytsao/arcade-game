@@ -26,7 +26,7 @@ Enemy.prototype.update = function(dt, speed) {
     }
 
     // Defining enemy locations
-    enemyLoc = {
+    var enemyLoc = {
         x: this.x,
         y: this.y
     };
@@ -64,7 +64,7 @@ Newbug.prototype.update = function(dt, speed) {
     }
 
     // Defining enemy locations
-    bugLoc = {
+    var bugLoc = {
         x: this.x,
         y: this.y
     };
@@ -92,7 +92,7 @@ var Player = function(x, y) {
     this.sprite = 'images/char-boy.png';
 };
 Player.prototype.update = function() {
-    if (player.y < 100) {
+    if (this.y < 100) {
         setTimeout(function() {
             player.reset();
             alert("You Win!");
