@@ -93,8 +93,9 @@ var Player = function(x, y) {
 };
 Player.prototype.update = function() {
     if (this.y < 100) {
+        var self = this;
         setTimeout(function() {
-            player.reset();
+            self.reset();
             alert("You Win!");
         }, 10);
 
